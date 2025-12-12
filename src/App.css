@@ -1,13 +1,9 @@
 .appContainer {
   background-image: var(--gradient);
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+  min-height: 100dvh;
 }
 
-.appContainer.no-scroll {
-  overflow: hidden;
-}
 .logoTheme {
   display: flex;
 }
@@ -15,7 +11,11 @@
 .body {
   width: 95%;
   margin-inline: auto;
-  padding-block: 50px;
+  padding-block: 50px 100px;
+}
+
+.logo img {
+  user-select: none;
 }
 
 .logoTheme {

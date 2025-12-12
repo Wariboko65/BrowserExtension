@@ -1,22 +1,56 @@
 import { createPortal } from "react-dom";
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./modal.css"
 
 export default function Modal({ id, children, modalId, closeModal, removeItem }) {
-    if (modalId !== id ) return null;
+    const modalOpen = modalId === id;
+    useEffect(() => {
+        if (modalOpen) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        }
+    }, [modalOpen]);
+   
+    const handleClose = () => {
+        closeModal()
+    }
+   
+    const handleConfirm = () => {
+        closeModal();
+        setTimeout(() => {removeItem(id)}, 300);
+    }
 
     return createPortal(
-        <div className="modalBackground">
-            <div className="modalContainer">
+        <AnimatePresence>
+          {modalId === id && (
+        <motion.div 
+          className="modalBackground"
+          data-theme={document.querySelector(".appContainer")?.dataset.theme}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.28 }}
+          exit={{ opacity: 0, transition: { delay: 0.28, duration: 0.4 }}}
+        
+        >
+            <motion.div 
+              className="modalContainer-1"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.28 }}
+              exit={{ opacity: 0, scale: 0.1, transition: { delay: 0.28, duration: 0.4} }}
+            
+            >
                 {children}
                 <div className="buttonContainer">
-                    <button type="button" className="buttons" onClick={closeModal}>No, Cancel</button>
-                    <button type="button" className="buttons btn" onClick={() => {
-                        removeItem(id);
-                        closeModal();
-                    }}>Yes, I'm sure</button>
+                    <button type="button" className="buttons" onClick={handleClose}>No, Cancel</button>
+                    <button type="button" className="buttons btn" onClick={handleConfirm}>Yes, I'm sure</button>
                 </div>
-            </div> 
-        </div>,
+            </motion.div>
+        </motion.div>)}
+        </AnimatePresence>, 
         document.getElementById("root")
     );
 }

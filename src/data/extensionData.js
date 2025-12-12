@@ -92,7 +92,7 @@ export const extensionData = [
     {
         id: 12,
         logo: viewportBuddy,
-        name: "ViewportBuddy",
+        name: "Viewport Buddy",
         description: "Simulates various screen resolutions directly within the browser.",
         isActive: false 
     }
