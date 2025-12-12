@@ -2,13 +2,86 @@
   background-image: var(--gradient);
   width: 100%;
   min-height: 100vh;
-  transition: background-image .25s ease-in;
+  overflow: hidden;
 }
 
-.togglerIcon {
-  height: 50px;
+.appContainer.no-scroll {
+  overflow: hidden;
 }
-.red {
-  background: blue;
-  border: 2px solid black;
+.logoTheme {
+  display: flex;
+}
+
+.body {
+  width: 95%;
+  margin-inline: auto;
+  padding-block: 50px;
+}
+
+.logoTheme {
+  background-color: var(--bg-1);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px 0 var(--bg-4), 0 4px 16px var(--shadow);
+  transition: background-color .25s ease-in-out, box-shadow .25s ease-in-out;
+}
+
+.navHeader {
+ padding: 40px 0 50px 0;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.navHeader h1 {
+  color: var(--text-1);
+  transition: color .25s ease-in-out;
+
+}
+
+.link {
+  text-decoration: none;
+  padding: 8px 16px;
+  margin-inline: 5px;
+  border-radius: 20px;
+  background-color: var(--bg-1);
+  color: var(--text-1);
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  transition: background-color .25s ease-in-out, color .25s ease-in-out;
+}
+
+.link:hover {
+  background-color: var(--bg-3);
+  color: var(--text-2);
+  transition: color .25s ease-in-out, background-color .25s ease-in-out;
+}
+.link.active:hover {
+  background: var(--red-3);
+  color: var(--text-1);
+  transition: background-color .25s ease-in-out, color .25s ease-in-out;
+}
+
+.link:focus,
+.link:focus-visible {
+  outline: 2px solid var(--red-2);
+  outline-offset: 2px;
+}
+
+@media (width >= 1024px) {
+  .body {
+    width: 80%;
+  }
+ 
+  .navHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

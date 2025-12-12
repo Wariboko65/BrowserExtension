@@ -1,22 +1,36 @@
 .toggleContainer {
-    padding: 20px; 
-    background-color: var(--bg-1);
+    padding: 25px; 
+    background-color: var(--bg-2);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    user-select: none;
+    cursor: pointer;
+    height: 3.125rem;
+    transition: background-color .25s ease-out;
     border-radius: 16px;
 }
 
+
+.toggleContainer:focus,
+.toggleContainer:focus-visible {
+    outline: 2px solid var(--red-2);
+    outline-offset: 2px;
+}
+
+.toggleContainer:hover {
+    background: var(--bg-3);
+}
 #theme {
     visibility: hidden;
     position: absolute;
+    user-select: none;
+    cursor: pointer;
 
 }
 
-label img {
-    width: 30px;
+.label img {
+    width: 1.875rem;
     display: block;
-
 }

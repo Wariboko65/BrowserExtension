@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import moon from "./assets/images/icon-moon.svg";
 import sun from "./assets/images/icon-sun.svg";
 import logo from "./assets/images/logo.svg";
-import logoDark from "./assets/images/logodark.svg";
+import darkLogo from "./assets/images/darkLogo.svg";
 import AllExtensions from "./pages/allExtensions";
 import ActiveExtensions from "./pages/activeExtensions";
 import InactiveExtensions from "./pages/inactiveExtensions";
@@ -14,9 +14,9 @@ import './App.css'
 
 function App() {
   const [extensionInfo, setExtensionInfo] = useState(extensionData);
-  const [modalId, setModalId] = useState(false);
-  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage("theme", preference);
+  const [modalId, setModalId] = useState(null);
+  const themePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage("theme", themePreference);
  
   const toggleChange = (id) => {
     setExtensionInfo((prev) => (
@@ -38,68 +38,76 @@ function App() {
         item.id !== id
       ))
     ));
-  } 
+  }
+ 
+  const navLinkStyles = ({ isActive }) => ({
+    backgroundColor: isActive ? "var(--red-2)" : "var(--bg-1)",
+    color: isActive ? "var(--bg-1)" : "var(--text-1)"
+  });
 
   return (
     <BrowserRouter>
       <div className="appContainer" data-theme={theme ? "dark" : "light"}>
-        <div className="header">
-          <div className="logoTheme">
-            <div className="logo">
-             <img src={theme ? logo : logoDark} alt="ExtensionPageLogo" />
+        <div className="body">
+          <div className="header">
+            <div className="logoTheme">
+              <div className="logo">
+               <img src={theme ? logo : darkLogo} alt="ExtensionPageLogo" />
+              </div>
+              <ThemeToggler
+                isChecked={theme}
+                handleChange={() => setTheme(!theme)}
+                sun={sun}
+                moon={moon}
+              /> 
             </div>
-            <ThemeToggler
-              isChecked={theme}
-              handleChange={() => setTheme(!theme)}
-              className="red"
-              sun={sun}
-              moon={moon}
-            /> 
+            <div className="navHeader">
+              <h1>Extensions List</h1>
+              <nav>
+                <NavLink style={navLinkStyles} className="link" to="/">All</NavLink>
+                <NavLink style={navLinkStyles} className="link" to="/active">Active</NavLink>
+                <NavLink style={navLinkStyles} className="link" to="/inactive">Inactive</NavLink>
+              </nav>
+            </div>
           </div>
-          <div className="navHeader">
-            <h1>Extensions List</h1>
-            <nav>
-              <NavLink to="/">All</NavLink>
-              <NavLink to="/active">Active</NavLink>
-              <NavLink to="/inactive">Inactive</NavLink>
-            </nav>
-          </div>
-        </div>
+        
       
-       <Routes>
-        <Route path="/" element={
-          <AllExtensions 
-            dataValue={allExtension}
-            modalId={modalId}
-            openModal={openModal}
-            closeModal={closeModal}
-            removeItem={removeItem}
-            toggleChange={toggleChange}
-          />
-          }
-        />
-        <Route path="/active" element={
-          <ActiveExtensions 
-            dataValue={activeExtension}
-            modalId={modalId}
-            openModal={openModal}
-            closeModal={closeModal}
-            removeItem={removeItem}
-            toggleChange={toggleChange}
-          />
-          } 
-        />
-        <Route path="/inactive" element={
-          <InactiveExtensions
-            dataValue={inactiveExtensions}
-            modalId={modalId}
-            openModal={openModal}
-            closeModal={closeModal}
-            toggleChange={toggleChange}
-          />
-          } 
-        />
-       </Routes>
+          <Routes>
+            <Route path="/" element={
+              <AllExtensions 
+                dataValue={allExtension}
+                modalId={modalId}
+                openModal={openModal}
+                closeModal={closeModal}
+                removeItem={removeItem}
+                toggleChange={toggleChange}
+              />
+              }
+            />
+            <Route path="/active" element={
+              <ActiveExtensions 
+                dataValue={activeExtension}
+                modalId={modalId}
+                openModal={openModal}
+                closeModal={closeModal}
+                removeItem={removeItem}
+                toggleChange={toggleChange}
+              />
+              } 
+            />
+            <Route path="/inactive" element={
+              <InactiveExtensions
+                dataValue={inactiveExtensions}
+                modalId={modalId}
+                openModal={openModal}
+                closeModal={closeModal}
+                removeItem={removeItem}
+                toggleChange={toggleChange}
+              />
+              } 
+            />
+          </Routes>
+       </div>
       </div>
     </BrowserRouter>
   

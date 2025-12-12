@@ -1,0 +1,59 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    bottom: -10%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalContainer {
+    background-color: var(--bg-1);
+    padding: 16px;
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+
+.buttons {
+    background: var(--bg-1);
+    border: 1.5px solid var(--bg-3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-1);
+    transition: background-color .25s ease-in-out, color .25s ease-in-out, border .25s ease-in-out;
+}
+
+.btn {
+    background-color: var(--red-2);
+    border: 1.5px solid var(--red-2);
+    color: var(--bg-1);
+}
+
+.buttons:hover {
+    background-color: var(--red-1);
+    color: var(--bg-1);
+    border: 1.5px solid var(--red-1);
+}
+
+.buttons:focus,
+.buttons:focus-visible {
+    background-color: var(--bg-5);
+    color: var(--text-1);
+    border: 1.5px solid var(--bg-5);
+    outline: 2px solid var(--red-1);
+    outline-offset: 2px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}

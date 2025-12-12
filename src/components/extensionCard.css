@@ -1,0 +1,117 @@
+.cardContainer {
+    background-color: var(--bg-1);
+    padding: 16px;
+    border-radius: 20px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--bg-2);
+    overflow: scroll;
+    box-shadow: 0 4px 10px 0 var(--bg-4), 0 4px 10px 0 var(--shadow);
+    transition: background-color .25s ease-in-out, border .25s ease-in-out, box-shadow .25s ease-in-out, border .25s ease-in-out;
+  
+}
+
+.top {
+    display: flex;
+    gap: 20px;
+}
+
+.extensionWriteUp h2 {
+    color: var(--text-1);
+    transition: color .3s ease-in-out;
+}
+
+.extensionWriteUp p {
+    color: var(--text-2);
+    transition: color .3s ease-in-out
+}
+
+.button {
+    background-color: var(--bg-1);
+    border: 1.5px solid var(--bg-3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-1);
+    transition: background-color .25s ease-in-out, color .25s ease-in-out, border .25s ease-in-out;
+}
+
+.button:focus,
+.button:focus-visible {
+    background-color: var(--bg-5);
+    color: var(--text-1);
+    border: 1.5px solid var(--bg-5);
+    outline: 2px solid var(--red-1);
+    outline-offset: 2px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button:hover {
+    background: var(--red-1);
+    color: var(--bg-1);
+    border: 1.5px solid var(--red-1);
+}
+
+.checkbox {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    position: absolute;
+}
+
+.label {
+    display: block;
+    width: 40px;
+    height: 20px;
+    position: relative;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--bg-3);
+    transition: background-color .25s ease-in-out;
+}
+
+.slider {
+    pointer-events: none;
+}
+.slider::after {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--white);
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    transition: left .25s ease-in-out;
+}
+
+.checkbox:focus + .slider::before,
+.checkbox:focus-visible + .slider::before {
+    outline: 2px solid var(--red-1);
+    outline-offset: 2px;
+}
+
+.checkbox:checked + .slider::after {
+    left: 70%;
+}
+.checkbox:checked + .slider::before {
+    background-color: var(--red-1);
+}
+.checkbox:checked:hover + .slider::before {
+    background-color: var(--red-2);
+}

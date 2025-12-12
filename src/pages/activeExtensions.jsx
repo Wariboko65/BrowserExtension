@@ -1,8 +1,9 @@
 import ExtensionCard from "../components/extensionCard.jsx";
+import "./pages.css"
 
 export default function ActiveExtensions({ modalId, openModal, closeModal, dataValue, removeItem, toggleChange }) {
     return (
-        <div className="activeContainer">
+        <div className="container">
             {dataValue.map((items) => (
                 <ExtensionCard
                   key={items.id}
