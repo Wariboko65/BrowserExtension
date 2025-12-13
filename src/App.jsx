@@ -15,15 +15,16 @@ import './App.css'
 function App() {
   const [extensionInfo, setExtensionInfo] = useState(extensionData);
   const [modalId, setModalId] = useState(null);
-  const [theme, setTheme] = useLocalStorage("theme", "dark");
+  const systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  const [theme, setTheme] = useLocalStorage("theme", systemPreference);
   const [themeMode, setThemeMode] = useLocalStorage("themeMode", "system");
  
   useEffect(() => {
     if (themeMode !== "system") return;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
    
-    const applyTheme = () => {
-      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const applyTheme = (e) => {
+      setTheme(e?.matches ?? mediaQuery.matches ? "dark" : "light");
     }
    
     applyTheme();
@@ -35,11 +36,7 @@ function App() {
   }, [themeMode]);
  
   useEffect(() => {
-    if (theme === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
   }, [theme]);
  
   const toggleTheme = () => {
