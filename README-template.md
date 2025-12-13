@@ -4,7 +4,9 @@ This is a solution to the [Browser extensions manager UI challenge on Frontend M
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./src/assets/images/dl.png)
+
+![](./src/assets/images/dd.png)
 
 ### Links
 
