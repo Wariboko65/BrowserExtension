@@ -136,7 +136,7 @@
 }
 
 .exit:hover {
-    color: var(--text-1);
+    color: var(--red-3);
 }
 
 .exitBtn {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useEffectEvent } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import moon from "./assets/images/icon-moon.svg";
 import sun from "./assets/images/icon-sun.svg";
@@ -17,35 +17,29 @@ function App() {
   const [modalId, setModalId] = useState(null);
   const systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   const [theme, setTheme] = useLocalStorage("theme", systemPreference);
-  const [themeMode, setThemeMode] = useLocalStorage("themeMode", "system");
- 
   useEffect(() => {
-    if (themeMode !== "system") return;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-   
+
     const applyTheme = (e) => {
-      const isDark = e ? e.matches : mediaQuery.matches;
-      setTheme(isDark ? "dark" : "light");
+      setTheme(e.matches ? "dark" : "light");
     }
    
-    applyTheme();
-   
+
     mediaQuery.addEventListener("change", applyTheme);
    
     return () => 
       mediaQuery.removeEventListener("change", applyTheme);
-  }, [themeMode]);
+  }, [setTheme]);
  
   useEffect(() => {
       document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
  
   const toggleTheme = () => {
-    setThemeMode("manual");
     setTheme((prev) => (
       prev === "dark" ? "light" : "dark"
     ));
-  }
+  };
 
   const toggleChange = (id) => {
     setExtensionInfo((prev) => (
@@ -53,7 +47,7 @@ function App() {
         item.id === id ? {...item, isActive: !item.isActive} : item
       ))
     ));
-  }
+  };
 
   const openModal = (id) => setModalId(id);
   const closeModal = () => setModalId(null);
