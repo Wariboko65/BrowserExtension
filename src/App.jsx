@@ -24,7 +24,8 @@ function App() {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
    
     const applyTheme = (e) => {
-      setTheme(e?.matches ?? mediaQuery.matches ? "dark" : "light");
+      const isDark = e ? e.matches : mediaQuery.matches;
+      setTheme(isDark ? "dark" : "light");
     }
    
     applyTheme();
@@ -33,7 +34,7 @@ function App() {
    
     return () => 
       mediaQuery.removeEventListener("change", applyTheme);
-  }, [setTheme, themeMode]);
+  }, [themeMode]);
  
   useEffect(() => {
       document.documentElement.setAttribute("data-theme", theme);
