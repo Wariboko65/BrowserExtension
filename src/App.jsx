@@ -15,25 +15,24 @@ import './App.css'
 function App() {
   const [extensionInfo, setExtensionInfo] = useState(extensionData);
   const [modalId, setModalId] = useState(null);
-  const themePreference = () => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const [theme, setTheme] = useLocalStorage("theme", themePreference());
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
   const [themeMode, setThemeMode] = useLocalStorage("themeMode", "system");
  
   useEffect(() => {
     if (themeMode !== "system") return;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
    
-    const handler = (event) => {
-      setTheme(event.matches ? "dark" : "light");
-    };
+    const applyTheme = () => {
+      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    }
    
-    mediaQuery.addEventListener("change", handler);
+    applyTheme();
+   
+    mediaQuery.addEventListener("change", applyTheme);
    
     return () => 
-      mediaQuery.removeEventListener("change", handler);
-  }, [setTheme, themeMode]);
+      mediaQuery.removeEventListener("change", applyTheme);
+  }, [themeMode]);
  
   useEffect(() => {
     if (theme === "dark") {
