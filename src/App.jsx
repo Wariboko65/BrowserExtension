@@ -17,19 +17,16 @@ function App() {
   const [modalId, setModalId] = useState(null);
   const systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   const [theme, setTheme] = useLocalStorage("theme", systemPreference);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
     const applyTheme = (e) => {
       setTheme(e.matches ? "dark" : "light");
     }
-   
-
     mediaQuery.addEventListener("change", applyTheme);
-   
     return () => 
       mediaQuery.removeEventListener("change", applyTheme);
-  }, [setTheme]);
+  }, [setTheme, systemPreference]);
  
   useEffect(() => {
       document.documentElement.setAttribute("data-theme", theme);

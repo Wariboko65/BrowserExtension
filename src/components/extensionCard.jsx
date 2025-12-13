@@ -58,13 +58,13 @@ export default function ExtensionCard( { name, logo, description, isActive, id, 
             <div className="modalContainer-2">
                 <div className="modalHeader">
                   <div className="headerSection">
-                    <AlertTriangle className="alert" size={24} />
+                    <AlertTriangle className="alert" />
                     <p>Are you sure?</p>
                   </div>
                   <button className="exitBtn" onClick={() => {
                     closeModal();
                   }} type="button">
-                    <X className="exit" size={24}/>
+                    <X className="exit" />
                   </button>
                 </div>
                 <div className="alertText">
