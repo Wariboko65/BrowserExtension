@@ -33,10 +33,10 @@ function App() {
    
     return () => 
       mediaQuery.removeEventListener("change", applyTheme);
-  }, [themeMode]);
+  }, [setTheme, themeMode]);
  
   useEffect(() => {
-      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
  
   const toggleTheme = () => {
