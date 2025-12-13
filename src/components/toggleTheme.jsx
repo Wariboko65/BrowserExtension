@@ -1,19 +1,19 @@
-import {motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import "./toggle.css"
 
-export default function ToggleTheme({ isChecked, handleChange, sun, moon }) {
+export default function ToggleTheme({ isChecked, toggleTheme, sun, moon }) {
     return (
         <div className="toggleContainer" tabIndex="0">
             <input 
               type="checkbox" 
               id="theme"
               checked={isChecked}
-              onChange={handleChange}
+              onChange={toggleTheme}
             />
             <label className="label" htmlFor="theme">
                 <AnimatePresence>
                 {
-                    isChecked ? <motion.img 
+                    isChecked   ? <motion.img 
                                    src={sun} 
                                    alt="sunThemeIcon"
                                    key="sun"

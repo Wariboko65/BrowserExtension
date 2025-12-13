@@ -51,6 +51,6 @@ export default function Modal({ id, children, modalId, closeModal, removeItem })
             </motion.div>
         </motion.div>)}
         </AnimatePresence>, 
-        document.getElementById("root")
+        document.body
     );
 }

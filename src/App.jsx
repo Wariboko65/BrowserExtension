@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useEffectEvent } from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import moon from "./assets/images/icon-moon.svg";
 import sun from "./assets/images/icon-sun.svg";
@@ -15,9 +15,41 @@ import './App.css'
 function App() {
   const [extensionInfo, setExtensionInfo] = useState(extensionData);
   const [modalId, setModalId] = useState(null);
-  const themePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage("theme", themePreference);
+  const themePreference = () => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  };
+  const [theme, setTheme] = useLocalStorage("theme", themePreference());
+  const [themeMode, setThemeMode] = useLocalStorage("themeMode", "system");
  
+  useEffect(() => {
+    if (themeMode !== "system") return;
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+   
+    const handler = (event) => {
+      setTheme(event.matches ? "dark" : "light");
+    };
+   
+    mediaQuery.addEventListener("change", handler);
+   
+    return () => 
+      mediaQuery.removeEventListener("change", handler);
+  }, [setTheme, themeMode]);
+ 
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  }, [theme]);
+ 
+  const toggleTheme = () => {
+    setThemeMode("manual");
+    setTheme((prev) => (
+      prev === "dark" ? "light" : "dark"
+    ));
+  }
+
   const toggleChange = (id) => {
     setExtensionInfo((prev) => (
       prev.map((item) => (
@@ -47,16 +79,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="appContainer" data-theme={theme ? "dark" : "light"}>
+      <div className="appContainer">
         <div className="body">
           <div className="header">
             <div className="logoTheme">
               <div className="logo">
-               <img src={theme ? logo : darkLogo} alt="ExtensionPageLogo" />
+               <img src={theme === "dark" ? logo : darkLogo} alt="ExtensionPageLogo" />
               </div>
               <ThemeToggler
-                isChecked={theme}
-                handleChange={() => setTheme(!theme)}
+                isChecked={theme === "dark"}
+                toggleTheme={toggleTheme}
                 sun={sun}
                 moon={moon}
               /> 
