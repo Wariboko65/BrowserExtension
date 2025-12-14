@@ -10,7 +10,7 @@ This is a solution to the [Browser extensions manager UI challenge on Frontend M
 
 ### Links
 
-- Solution URL: [Extension-Manager-Ui](https://your-solution-url.com)
+- Solution URL: [Extension-Manager-Ui](https://www.frontendmentor.io/solutions/browser-extension-manager-ui-using-react-and-css-variables-LysCCS-s0_)
 - Live Site URL: [Extension-Manager-Ui](https://browser-extension-nu-six.vercel.app/)
 
 ## My process
