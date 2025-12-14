@@ -1,16 +1,43 @@
-# React + Vite
+# Frontend Mentor - Browser extensions manager UI solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Browser extensions manager UI challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-Currently, two official plugins are available:
+### Screenshot
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![](./src/assets/images/dl.png)
 
-## React Compiler
+![](./src/assets/images/dd.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Links
 
-## Expanding the ESLint configuration
+- Solution URL: [Extension-Manager-Ui](https://www.frontendmentor.io/solutions/browser-extension-manager-ui-using-react-and-css-variables-LysCCS-s0_)
+- Live Site URL: [Extension-Manager-Ui](https://browser-extension-nu-six.vercel.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## My process
+
+### Built with
+
+## 🛠 Tech Stack
+
+- **Language:** JavaScript (ES6+)
+- **Framework:** React.js (Functional Components & Hooks)
+- **Build Tool:** Vite
+- **Routing:** React Router DOM
+- **State Management:** React `useState`, `useEffect`
+- **Persistence:** Local Storage (`use-local-storage`)
+- **Styling:** CSS (Custom Properties / CSS Variables)
+- **Theming:** Light & Dark mode with `data-theme` and `prefers-color-scheme`
+- **Animations:** Framer Motion
+- **Modals:** React Portals (`createPortal`)
+- **Data Handling:** Static JSON data, array mapping & filtering
+- **Assets:** SVG icons and logos
+- **Accessibility:** Keyboard focus & semantic HTML
+- **Browser APIs:** `window.matchMedia`, `localStorage`
+- **Package Manager:** npm
+- **Version Control:** Git
+- **Deployment:** Vercel
+
+## Author
+
+- Website - [Godwin Oamien John](https://godwins-portfolio.vercel.app )
+- Frontend Mentor - [@Wariboko65](https://www.frontendmentor.io/profile/Wariboko65)
