@@ -32,5 +32,10 @@
 
 .label img {
     width: 1.875rem;
+    cursor: pointer;
     display: block;
+}
+
+.label {
+    cursor: pointer;
 }
